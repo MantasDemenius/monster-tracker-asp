@@ -1,0 +1,200 @@
+﻿@{
+    ViewData["Title"] = "Monsters";
+    @model IEnumerable<monster_tracker_asp.Models.Monster>
+}
+
+<div class="container">
+    @*<section>
+        <div class="filter-block">
+            <form action="POST">
+                Name: <input type="text" name="search-name" placeholder="Creature name" class="filter-search-name">
+
+                <button type="submit" name="filter-button" class="filter-search-button">Filter</button>
+            </form>
+
+        </div>
+    </section>*@
+    <section>
+        @*<a href="#action-focus">asdsadsadsa</a>*@
+        @foreach (var item in Model)
+        {
+        <div class="stat-block-template-wrapper">
+            @*@item.User.Username*@
+            <button type="button" class="btn-collapsible">@item.Name</button>
+            <div class="stat-block-template">
+                <div class="stat-block-border">
+                </div>
+                <div class="stat-block-inner">
+                    <div class="stat-name red">
+                        @item.Name
+                    </div>
+                    <div class="stat-type black italic">
+                        @item.Size
+                        @foreach (var x in item.Type)
+                        {
+                            if (x.TypeCode == "subtype")
+                            {
+                                <text> (@x.Name)</text>
+                            }
+                            else
+                            {
+                                <text>@x.Name,</text>
+                            }
+                        }
+                        @item.Alignment
+                    </div>
+                    <div class="stat-red-line"><img class="red-line-img" src="~/images/separator.svg" /></div>
+                    <div class="stat-armor red bold">
+                        Armor class
+                        <span class="armor text red">@item.ArmorClass</span>
+                    </div>
+                    <div class="stat-hit-points red bold">
+                        Hit points
+                        <span class="hit-points text red">@item.HitPoints</span>
+                    </div>
+                    <div class="stat-speed red bold">
+                        Speed
+                        <span class="speed text red">@item.Speed</span>
+                    </div>
+                    <div class="stat-red-line"><img class="red-line-img" src="~/images/separator.svg" /></div>
+                    <div class="stat-ability-scores">
+                        <table class="ability-scores-list">
+                            <tr>
+                                <td class="ability-score-title red bold">STR</td>
+                                <td class="ability-score-title red bold">DEX</td>
+                                <td class="ability-score-title red bold">CON</td>
+                                <td class="ability-score-title red bold">INT</td>
+                                <td class="ability-score-title red bold">WIS</td>
+                                <td class="ability-score-title red bold">CHA</td>
+                            </tr>
+                            <tr>
+                                @foreach (var x in item.Score)
+                                {
+                                    if (x.ScoreTypeCode == "ability")
+                                    {
+                                        <td class="ability-score-content text red">@x.Strength (+5)</td>
+                                        <td class="ability-score-content text red">@x.Dexterity (+1)</td>
+                                        <td class="ability-score-content text red">@x.Constitution (+1)</td>
+                                        <td class="ability-score-content text red">@x.Intelligence (+1)</td>
+                                        <td class="ability-score-content text red">@x.Wisdom (+1)</td>
+                                        <td class="ability-score-content text red">@x.Charisma (+1)</td>
+                                    }
+                                }
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="stat-red-line"><img class="red-line-img" src="~/images/separator.svg" /></div>
+                    @if (item.Score.Count > 1)
+                    {
+
+                    <div class="stat-saving-throws red bold">
+                        Saving Throws
+                        <span class="saving-throws text red">
+                            @foreach (var x in item.Score)
+                            {
+                                if (x.ScoreTypeCode == "save")
+                                {
+                                    @(@x.Strength != null ? "STR +" + @x.Strength + " " : null)
+                                    @(@x.Dexterity != null ? "DEX +" + @x.Dexterity + " " : null)
+                                    @(@x.Constitution != null ? "CON +" + @x.Constitution + " " : null)
+                                    @(@x.Intelligence != null ? "INT +" + @x.Intelligence + " " : null)
+                                    @(@x.Wisdom != null ? "WIS +" + @x.Wisdom + " " : null)
+                                    @(@x.Charisma != null ? "CHA +" + @x.Charisma : null)
+                                }
+                            }
+                        </span>
+                    </div>
+                    }
+                    <div class="stat-ability-skills red bold">
+                        Skills
+                        <span class="ability-skills text red">
+                            @if (item.Skill.Acrobatics != null)
+                            {
+                                <text>Acrobatis @item.Skill.Acrobatics</text>
+                            }
+                            @if (item.Skill.History != null)
+                            {
+                                <text>History @item.Skill.History</text>
+                            }
+                            @if (item.Skill.Insight != null)
+                            {
+                                <text>Insight @item.Skill.Insight</text>
+                            }
+                            @if (item.Skill.Medicine != null)
+                            {
+                                <text>Medicine @item.Skill.Medicine</text>
+                            }
+                            @if (item.Skill.Perception != null)
+                            {
+                                <text>Perception @item.Skill.Perception</text>
+                            }
+                        </span>
+                    </div>
+                    @if (item.Vulnerability != null)
+                    {
+                        <div class="stat-vulnerabilities red bold">
+                            Damage vulnerabilities
+                            <span class="vulnerabilities text red">@item.Vulnerability</span>
+                        </div>
+                    }
+                    @if (item.Resistance != null)
+                    {
+                        <div class="stat-resistances red bold">
+                            Damage resistances
+                            <span class="resistances text red">@item.Resistance</span>
+                        </div>
+                    }
+                    @if (item.Immunity != null)
+                    {
+                        <div class="stat-immunities red bold">
+                            Damage immunities
+                            <span class="immunitiestext red">@item.Immunity</span>
+                        </div>
+                    }
+                    @if (item.ConditionImmunity != null)
+                    {
+                        <div class="stat-condition-immunities red bold">
+                            Condition immunities
+                            <span class="condition-immunities text red">@item.ConditionImmunity</span>
+                        </div>
+                    }
+                    <div class="stat-senses red bold">
+                        Senses
+                        <span class="senses text red">@item.Sense</span>
+                    </div>
+                    <div class="stat-languages red bold">
+                        Languages
+                        <span class="languages text red">@item.Language</span>
+                    </div>
+                    <div class="stat-challenge-rating red bold">
+                        Challenge Rating
+                        <span class="challenge-rating red not-bold">@item.ChallengeRating</span>
+                    </div>
+                    @*<div class="stat-red-line"><img class="red-line-img" src="~/images/separator.svg" /></div>
+                    <div class="action-text action-text-title bold italic">
+                        Legendary Resistance (3/day)
+                        <span class="action-text-paragraph not-bold">
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived
+                            not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularise
+                        </span>
+                    </div>
+                    <div class="action-text action-text-title bold italic">
+                        Legendary Resistance (3/day)
+                        <span class="action-text-paragraph not-bold">
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived
+                            not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularise
+                        </span>
+                    </div>
+                    <div class="action-text-header-title red" id="action-focus">
+                        Actions
+                        <hr>
+                    </div>*@
+                </div>
+                <div class="stat-block-border">
+                </div>
+            </div>
+        </div>
+        }
+
+    </section>
+</div>

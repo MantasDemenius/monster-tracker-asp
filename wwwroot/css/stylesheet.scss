@@ -1,0 +1,276 @@
+@font-face {
+    font-family: 'comfortaaregular';
+    src: url('../fonts/comfortaa-regular-webfont.woff2') format('woff2'),
+         url('../fonts/comfortaa-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+$color-red: #822000;
+$color-nav: #191919;
+$color-nav-text: #fff;
+$nav-height: 8vh;
+$font-stack: 'MrsEavesSmallCaps', 'Roboto', 'Helvetica', 'sans-serif';
+
+* {
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+//
+body {
+  margin:0;
+  background-color: rgba(0,0,0,0.04);
+}
+hr{
+  border: solid 1px $color-red;
+}
+.red {
+  color: $color-red;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.not-bold {
+  font-weight: normal;
+}
+.italic {
+  font-style: italic;
+}
+
+.text {
+  font-weight: normal;
+  // display: inline-block;
+}
+
+
+
+// Stat block template
+
+
+.container{
+    margin: $nav-height auto auto auto;
+}
+
+
+.stat-block-template-wrapper {
+  margin: $nav-height auto auto auto;
+  width:80%;
+}
+
+
+//Collapsible button
+.btn-collapsible {
+  background-color: #777;
+  font-family: 'Carrois Gothic SC', $font-stack;
+  color:white;
+  font-size: 1.2em;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  outline: none;
+  border: 1px solid black;
+  margin-bottom: 1%;
+}
+
+.active, .btn-collapsible:hover {
+  background-color: #555;
+}
+
+.btn-collapsible:after {
+  content: '\002B';
+  font-size: 1.2em;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+  font-size: 1.2em;
+}
+
+
+
+.stat-block-template {
+  font-family: $font-stack;
+  // background-color: #f7f2c6;
+  background-image: url('./../images/monster-background.png');
+  font-size: 1em;
+  margin:0 1% 1% 1%;
+  max-height: 0;
+  overflow:hidden;
+  transition: max-height 0.5s ease-out;
+
+  .stat-block-border {
+    display: block;
+    height: 5px;
+    background-color: #caa472;
+    border: 0.5px solid black;
+  }
+
+  .stat-block-inner {
+    padding: 3%;
+
+
+  .stat-name {
+    font-family: 'Carrois Gothic SC', $font-stack;
+    font-size: 1.8em;
+  }
+
+
+    .stat-type {
+      font-size: 0.8em;
+    }
+
+    .stat-red-line {
+      margin: 1% 0;
+
+      .red-line-img {
+        min-height: 10px;
+        max-width: 100%;
+      }
+    }
+
+    .stat-ability-scores {
+      display: block;
+
+      .ability-scores-list {
+        padding: 0 1%;
+        width: 100%;
+        margin: 0;
+        overflow: hidden;
+
+        .ability-score-title {
+          display: inline-block;
+          width:15%;
+          text-align: center;
+        }
+        .ability-score-content{
+          display: inline-block;
+          width:15%;
+          text-align: center;
+        }
+      }
+    }
+    .action-text{
+      padding-bottom: 2%;
+
+
+      .action-text-paragraph {
+        font-style:normal;
+      }
+    }
+    .action-text-header-title{
+      font-size: 1.5em;
+      font-family: $font-stack;
+      padding: 1% 0;
+      line-height: 1.5;
+    }
+
+  }
+
+}
+
+
+
+//----------------------
+//Hamburger
+//----------------------
+
+.nav-hamburger {
+  background: $color-nav;
+  position:fixed;
+  height: $nav-height;
+  left: 0;
+  top: 0;
+  width:100%;
+
+  .logo{
+    font-size: 2em;
+    font-family: 'comfortaaregular', $font-stack;
+    position: absolute;
+    left:5%;
+    top:50%;
+    transform: translate(-5%, -50%);
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+      color: brown;
+    }
+  }
+
+  .hamburger {
+  position: absolute;
+  cursor:pointer;
+  right:5%;
+  top:50%;
+  transform: translate(-5%, -50%);
+
+
+
+    .line{
+      width:30px;
+      height:3px;
+      background: #fff;
+      margin:5px;
+    }
+  }
+
+
+  .nav-links {
+    position:fixed;
+    display:block;
+    height:100%;
+    width:20vw;
+    list-style: none;
+    flex-direction: column;
+    text-align: center;
+    right:0;
+    top: $nav-height;
+    background-color: $color-nav;
+    // opacity: 0.98;
+    transition: 0.5s;
+
+
+    .nav-links-element{
+
+
+      .nav-links-text{
+        color: $color-nav-text;
+        display:block;
+        text-decoration:none;
+        transition: 0.5s;
+        white-space: nowrap;
+        width:100%;
+        padding: 3.2vw;
+        background-color: #262626;
+        border-bottom: 1px solid $color-nav;
+        cursor: pointer;
+      }
+
+      .nav-links-text:hover {
+        background-color: #3b3b3b;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .stat-block-template-wrapper {
+    width:100%;
+  }
+  .nav-hamburger{
+
+    .nav-links{
+      width: 0;
+    }
+  }
+
+
+}

@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - monster tracker</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" type="text/css" title="Cool stylesheet" href="~/css/stylesheet.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Carrois+Gothic+SC|Rubik&display=swap" rel="stylesheet">
+    </environment>
+
+</head>
+<body>
+    <div id="root">
+        <header>
+        </header>
+        <nav class="nav-hamburger">
+            <div class="logo"><a href="#">monster tracker</a></div>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <ul class="nav-links">
+                <li class="nav-links-element"><a class="nav-links-text" asp-area="" asp-controller="Monsters" asp-action="Index">Monsters</a></li>
+                @*<li class="nav-links-element"><a class="nav-links-text" asp-area="" asp-controller="Monsters" asp-action="Index">Monsters</a></li>
+                <li class="nav-links-element"><a class="nav-links-text" asp-area="" asp-controller="Monsters" asp-action="Contact">Contact</a></li>*@
+                <!-- <li class="nav-links-element"><a class="nav-links-text" href="#">Filter</a></li>
+                <li class="nav-links-element"><a class="nav-links-text" href="#">Sign out</a></li> -->
+            </ul>
+        </nav>
+
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; 2019 - monster_tracker_asp</p>
+            </footer>
+        </div>
+
+        <environment include="Development">
+            <script src="~/js/main.js" asp-append-version="true"></script>
+        </environment>
+
+        @RenderSection("Scripts" , required: false)
+        </div>
+</body>
+</html>
